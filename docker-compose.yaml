@@ -1,0 +1,32 @@
+version: "3.8"
+services:
+#  bifrost_postgres:
+#    image: postgres:16
+#    hostname: bifrost-postgres
+#    environment:
+#      - POSTGRES_USER=postgres
+#      - POSTGRES_PASSWORD=postgres
+#      - POSTGRES_DB=bifrost
+#    ports:
+#      - "54328:5432"
+#    logging:
+#      options:
+#        max-size: 10m
+#        max-file: "3"
+#    volumes:
+#      - ./postgres-data:/var/lib/postgresql/data
+
+  dizvoter:
+    image: dizvoter:0.0.1-SNAPSHOT
+    ports:
+      - "8080:8080"
+    environment:
+      - database.host=bifrost-postgres
+      - database.port=5432
+      - database.username=postgres
+      - database.password=postgres
+      - database.name=bifrost
+#    depends_on:
+#      - bifrost_postgres
+#    links:
+#      - bifrost_postgres
