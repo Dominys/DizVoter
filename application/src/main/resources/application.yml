@@ -1,0 +1,29 @@
+spring:
+  application.name: DizVoter
+
+  datasource:
+    url: jdbc:mysql://${database.host:localhost}:${database.port:3306}/${database.name:dizvoter}?allowPublicKeyRetrieval=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false&createDatabaseIfNotExist=true
+    username: ${database.username:root}
+    password: ${database.password:root}
+
+  jooq:
+    sql-dialect: mysql
+  liquibase:
+    change-log: classpath:changelog/db.changelog.xml
+    enabled: true
+
+management:
+  server:
+    port: 8091
+  endpoint:
+    metrics:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include:
+          - health
+          - info
+          - env
+          - metrics
+          - loggers

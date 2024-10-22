@@ -1,0 +1,154 @@
+{
+	"info": {
+		"_postman_id": "6ba11586-e2e8-49fc-b2e1-24ead6324ab6",
+		"name": "DizVoter",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "29934576"
+	},
+	"item": [
+		{
+			"name": "Get poll by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/polls/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"polls",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get poll votes page",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/polls?page=0&pageSize=5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"polls"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "0",
+							"description": "Page number"
+						},
+						{
+							"key": "pageSize",
+							"value": "5",
+							"description": "Page size"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create poll",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"someTestPoll\",\n    \"voteOptions\": [\n        {\n            \"name\": \"option1\"\n        },\n        {\n            \"name\": \"option2\"\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/api/poll"
+			},
+			"response": []
+		},
+		{
+			"name": "Make vote",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/polls/:pollId/votes/:voteOptionId",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"polls",
+						":pollId",
+						"votes",
+						":voteOptionId"
+					],
+					"variable": [
+						{
+							"key": "pollId",
+							"value": "1",
+							"description": "Poll ID"
+						},
+						{
+							"key": "voteOptionId",
+							"value": "1",
+							"description": "Poll option ID"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get polls page",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/polls?page=0&pageSize=5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"polls"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "0",
+							"description": "Page number"
+						},
+						{
+							"key": "pageSize",
+							"value": "5",
+							"description": "Page size"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

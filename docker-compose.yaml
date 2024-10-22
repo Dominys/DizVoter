@@ -1,32 +1,26 @@
 version: "3.8"
 services:
-#  bifrost_postgres:
-#    image: postgres:16
-#    hostname: bifrost-postgres
-#    environment:
-#      - POSTGRES_USER=postgres
-#      - POSTGRES_PASSWORD=postgres
-#      - POSTGRES_DB=bifrost
-#    ports:
-#      - "54328:5432"
-#    logging:
-#      options:
-#        max-size: 10m
-#        max-file: "3"
-#    volumes:
-#      - ./postgres-data:/var/lib/postgresql/data
+  dizvoter_db:
+    build:
+      context: .
+      dockerfile: Mysql.Dockerfile
+    image: dizvoter_db:latest
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=dizvoter
 
   dizvoter:
-    image: dizvoter:0.0.1-SNAPSHOT
+    image: dizvoter:latest
     ports:
       - "8080:8080"
     environment:
-      - database.host=bifrost-postgres
-      - database.port=5432
-      - database.username=postgres
-      - database.password=postgres
-      - database.name=bifrost
-#    depends_on:
-#      - bifrost_postgres
-#    links:
-#      - bifrost_postgres
+      - database.host=dizvoter_db
+      - database.port=3306
+      - database.username=root
+      - database.password=root
+      - database.name=dizvoter
+    depends_on:
+      dizvoter_db:
+        condition: service_healthy
