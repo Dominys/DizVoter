@@ -1,4 +1,5 @@
 # DizVoter App
+Test task for https://dizplai.com/ company.
 
 This project contains two parts: Spring backend application and React frontend.
 
